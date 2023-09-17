@@ -343,28 +343,28 @@ print(stringToInt!)
  class 클래스 이름 {
     프로퍼티와 메서드
  */
-
-class Dog {
-    var name: String = ""
-    var age: Int = 0
-    
-    // 초기화하고자 할 때?
-    init() {
-        
-    }
-    
-    func introduce() {
-        print("name \(name) age \(age)")
-    }
-}
-
-var dog = Dog()
-dog.name = "coco"
-dog.age = 3
-dog.name
-dog.age
-
-dog.introduce()
+//
+//class Dog {
+//    var name: String = ""
+//    var age: Int = 0
+//
+//    // 초기화하고자 할 때?
+//    init() {
+//
+//    }
+//
+//    func introduce() {
+//        print("name \(name) age \(age)")
+//    }
+//}
+//
+//var dog = Dog()
+//dog.name = "coco"
+//dog.age = 3
+//dog.name
+//dog.age
+//
+//dog.introduce()
 
 
 
@@ -411,3 +411,97 @@ user2.age
 
 var user3: User? = User(age: 23)
 user3 = nil
+
+
+
+
+
+
+//CH01_15.프로퍼티
+// 클래스, 구조체 또는 열거형 등에 관련된 값을 뜻한다
+// 저장, 연산, 타입 프로퍼티
+
+struct Dog {
+    var name: String
+    let gender: String
+}
+
+var dog = Dog(name: "gunter", gender: "Male")
+print(dog)
+
+dog.name = "권태완"
+//dog.gender = "female"
+
+let dog2 = Dog(name: "gunter", gender: "male")
+//dog2.name = "권태완"
+
+class Cat {
+    var name: String
+    let gender: String
+    
+    init(name: String, gender: String) {
+        self.name = name
+        self.gender = gender
+    }
+}
+
+let cat = Cat(name: "json", gender: "male")
+cat.name = "gunter"
+print(cat.name)
+// 클래스는 참조 타입이기 때문에 상수여도 값이 변경 됨
+
+
+struct Stock {
+    var averagePrice: Int
+    var quantity: Int
+    var purchasePrice: Int {
+        get {
+            return averagePrice * quantity
+        }
+        
+        set {
+            averagePrice = newValue / quantity
+        }
+    }
+}
+
+var stock = Stock(averagePrice: 2300, quantity: 3)
+print(stock)
+stock.purchasePrice
+stock.purchasePrice = 3000
+stock.averagePrice
+
+//프로퍼티 옵저버
+//저장 프로퍼티가 어떻게 사용되는지 알아보자
+
+class Account {
+    var credit: Int = 0 {
+        // 값이 저장되기 전
+        willSet {
+            print("잔액이 \(credit)원에서 \(newValue)원으로 변경될 예정입니다")
+        }
+        //값이 저장되기 후
+        didSet {
+            print("잔액이 \(oldValue)원에서 \(credit)원으로 변경되었습니다")
+        }
+    }
+}
+
+var account = Account()
+account.credit = 1000
+account.credit = 2000
+
+//타입 프로퍼티
+
+struct SomeStructure {
+    static var storedTypeProperty = "Some value."
+    
+    static var computedTypeProperty: Int {
+        return 1
+    }
+}
+
+SomeStructure.computedTypeProperty
+SomeStructure.storedTypeProperty
+SomeStructure.storedTypeProperty = "hello"
+SomeStructure.storedTypeProperty
