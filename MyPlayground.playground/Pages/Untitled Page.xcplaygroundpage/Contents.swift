@@ -206,13 +206,13 @@ for i in array {
 
 
 //while
-var number = 5
+//var number = 5
+//
+//while number < 10 {
+//    number += 1
+//}
 
-while number < 10 {
-    number += 1
-}
-
-number
+//number
 
 
 //repeat-while
@@ -253,3 +253,52 @@ print(optionalName)
 
 // 옵셔널 변수를 넣을 수 없음
 //var requiredName: String = optionalName
+
+
+
+
+
+//CH01_11.옵셔널 바인딩
+/*
+ 명시적 해제: 강제 해제, 비강제 해제(옵셔널 바인딩)
+ 묵시적 해제: 컴파일러에 의한 자동 해제, 옵셔널의 묵시적 해제
+ */
+
+var number: Int? = 3
+print(number)
+//강제 해제 -> 매우 위험, nil인 값을 벗기면 에러가 발생해 컴퓨터가 강제 종료됨
+print(number!)
+
+//안전하게 해제하려면 비강제 해제
+if let result = number {
+    print(result)
+} else {
+    
+}
+
+
+// guard문으로 옵셔널 바인딩을 할 수 있다 정도만 알아둬 지금은!
+func test() {
+    let number: Int? = 5
+    guard let result = number else { return }
+    print(result)
+}
+
+test()
+
+
+
+let value: Int? = 6
+if value == 6 {
+    print("value가 6입니다")
+} else {
+    print("value가 6이 아닙니다")
+}
+
+
+
+// 묵시적 해제
+
+let string = "12"
+var stringToInt: Int? = Int(string)
+print(stringToInt!)
