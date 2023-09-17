@@ -114,3 +114,68 @@ sendMessage(me: "Gunter", friends: "Json", "Albert", "Stella")
 
 
 
+//CH01_08. 조건문
+let age = 20
+
+if age < 19 {
+    print("미성년자 입니다.")
+}
+
+
+if age < 19 {
+    print("미성년자")
+} else {
+    print("성년자")
+}
+
+
+let animal = "pig"
+
+if animal == "dog" {
+    print("강아지 사료 주기")
+} else if animal == "cat" {
+    print("고양이 사료 주기")
+} else {
+    print("해당하는 동물 사료가 없음")
+}
+
+
+/*
+ switch 비교대상 {
+  case 패턴1:
+  case 패턴2:
+  case 패턴3:
+  default:
+    어느 비교 패턴과도 일치하지 않을 때 실행되는 구문
+ }
+ */
+
+let color = "red"
+
+switch color {
+case "blue":
+    print("파란색 입니다")
+case "green":
+    print("초록색 입니다")
+case "yellow":
+    print("노란색 입니다")
+default:
+    print("찾는 색상이 없습니다")
+}
+
+
+
+let temperature = 30
+
+switch temperature {
+case -20...9:
+    print("겨울입니다")
+case 10...14:
+    print("가을입니다")
+case 15...25:
+    print("봄입니다")
+case 26...35:
+    print("여름입니다")
+default:
+    print("이상 기후입니다")
+}
