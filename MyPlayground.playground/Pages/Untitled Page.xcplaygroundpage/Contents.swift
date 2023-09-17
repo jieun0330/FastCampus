@@ -901,17 +901,72 @@ import UIKit
 //CH01_23.옵셔널 체이닝
 // 옵셔널에 속해 있는 nil일지도 모르는 프로퍼티, 메서드, 서브스크립션 등을 가져오가 호출할 때 사용할 수 있는 일련의 과정
 
-struct Developer {
-    let name: String
+//struct Developer {
+//    let name: String
+//}
+//
+//struct Company {
+//    let name: String
+//    var developer: Developer?
+//}
+//
+//var developer = Developer(name: "han")
+//var company = Company(name: "Gunter", developer: developer)
+//print(company.developer)
+//print(company.developer?.name)
+//print(company.developer!.name)
+
+
+
+
+
+
+
+
+//CH01_24.try-catch
+// 스위프트에서 에러 처리를 어떻게 사용하는지
+
+// 오류 처리를 위한 PhoneError
+enum PhoneError: Error {
+    case unknown
+    case batteryLow(batteryLevel: Int)
 }
 
-struct Company {
-    let name: String
-    var developer: Developer?
+//throw구문을 이용해서 에러를 발생시킨다
+//throw PhoneError.batteryLow(batteryLevel: 20)
+
+//오류를 처리하는 방법
+//1. 함수에서 발생한 오류를 해당 함수에
+// throws -> throwing 함수
+func checkPhoneBatteryStatus(batteryLevel: Int) throws -> String {
+    guard batteryLevel != -1 else { throw PhoneError.unknown }
+    guard batteryLevel >= 20 else { throw PhoneError.batteryLow(batteryLevel: 20)}
+    return "배터리 상태가 정상입니다"
 }
 
-var developer = Developer(name: "han")
-var company = Company(name: "Gunter", developer: developer)
-print(company.developer)
-print(company.developer?.name)
-print(company.developer!.name)
+
+//2. do-catch로 오류를 해결
+/*
+ do {
+    try 오류 발생 가능 코드
+ } catch 오류 패턴 {
+    처리 코드
+ }
+ */
+
+do {
+    try checkPhoneBatteryStatus(batteryLevel: 20)
+} catch PhoneError.unknown {
+    print("알 수 없는 에러입니다")
+} catch  PhoneError.batteryLow(let batteryLevel) {
+    print("배터리 전원 부족 남은 배터리: \(batteryLevel)%")
+} catch {
+    print("그 외 오류 발생: \(error)")
+}
+
+
+let status = try? checkPhoneBatteryStatus(batteryLevel: -1)
+print(status)
+
+let status2 = try! checkPhoneBatteryStatus(batteryLevel: 30)
+print(status2)
