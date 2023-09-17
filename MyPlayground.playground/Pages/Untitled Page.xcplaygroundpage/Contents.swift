@@ -992,72 +992,106 @@ import UIKit
 
 // 익명함수여서 func를 쓰지 않는다
 // parameter와 return 타입이 없으니 ()
-let hello = { () -> () in
-    print("hello")
-}
-
-hello()
-
-let hello2 = { (name: String) -> String in
-    return "Hello, \(name)"
-}
+//let hello = { () -> () in
+//    print("hello")
+//}
+//
+//hello()
+//
+//let hello2 = { (name: String) -> String in
+//    return "Hello, \(name)"
+//}
 
 //전달인자 name: 을 쓰면 안됨
-hello2("Gunter")
+//hello2("Gunter")
+//
+//
+//func doSomething(closure: () -> ()) {
+//    closure()
+//}
+//
+//doSomething(closure: { () -> () in
+//    print("hello")
+//})
+//
+//doSomething {
+//    print("hello2")
+//}
+//
+//func doSomething2() -> () -> () {
+//    return { () -> () in
+//        print("hello4")
+//    }
+//}
+//
+//doSomething2()()
+//
+//func doSomething2(success: () -> (), fail: () -> ()) {
+//
+//}
+//
+//doSomething2 {
+//    <#code#>
+//} fail: {
+//    <#code#>
+//}
 
 
-func doSomething(closure: () -> ()) {
-    closure()
+
+//func doSomething3(closure: (Int, Int, Int) -> Int) {
+//    closure(1,2,3)
+//}
+//
+//doSomething3(closure: { (a, b, c) in
+//    return a+b+c
+//})
+//
+//doSomething3(closure: {
+//    return $0+$1+$2
+//})
+//
+//doSomething3(closure: {
+//    $0+$1+$2
+//})
+//
+//doSomething3() {
+//    $0+$1+$2
+//}
+//
+//doSomething3 {
+//    $0+$1+$2
+//}
+
+
+
+
+
+
+
+//CH01_26.고차함수
+// 다른 함수를 전달 인자로 받거나 함수 실행의 결과를 함수로 반환하는 함수
+// map, filter, reduce
+
+// map
+let numbers = [0,1,2,3]
+let mapArray = numbers.map { (number) -> Int in
+    return number * 2
+}
+print("map \(mapArray)")
+
+// filter
+let intArray = [10,5,20,13,4]
+let filterArray = intArray.filter { $0 > 5 }
+print("filter \(filterArray)")
+
+// reduce
+let someArray = [1,2,3,4,5]
+// 0부터 시작해서 배열 안의 요소들을 다 더 함
+// reduce(2) 로 하면 2부터 시작해서 배열 안의 요소들을 다 더함
+let reduceResult = someArray.reduce(0) {
+    (result: Int, element: Int) -> Int in
+    print("\(result) + \(element)")
+    return result + element
 }
 
-doSomething(closure: { () -> () in
-    print("hello")
-})
-
-doSomething {
-    print("hello2")
-}
-
-func doSomething2() -> () -> () {
-    return { () -> () in
-        print("hello4")
-    }
-}
-
-doSomething2()()
-
-func doSomething2(success: () -> (), fail: () -> ()) {
-    
-}
-
-doSomething2 {
-    <#code#>
-} fail: {
-    <#code#>
-}
-
-
-
-func doSomething3(closure: (Int, Int, Int) -> Int) {
-    closure(1,2,3)
-}
-
-doSomething3(closure: { (a, b, c) in
-    return a+b+c
-})
-
-doSomething3(closure: {
-    return $0+$1+$2
-})
-
-doSomething3(closure: {
-    $0+$1+$2
-})
-
-doSomething3() {
-    $0+$1+$2
-}
-
-doSomething3 {
-    $0+$1+$2
-}
+print("reduce \(reduceResult)")
