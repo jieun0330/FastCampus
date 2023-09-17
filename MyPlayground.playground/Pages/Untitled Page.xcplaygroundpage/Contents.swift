@@ -302,3 +302,33 @@ if value == 6 {
 let string = "12"
 var stringToInt: Int? = Int(string)
 print(stringToInt!)
+
+
+
+
+
+
+
+//CH01_12.구조체
+// 클래스? 구조체?
+/*
+ struct 구조체 이름 {
+    프로퍼티와 메서드
+ */
+
+struct User {
+    var nickname: String
+    var age: Int
+    
+    func information() {
+        print("\(nickname) \(age)")
+    }
+}
+
+var user = User(nickname: "gunter", age: 23)
+
+user.nickname
+user.nickname = "Albert"
+user.nickname
+
+user.information()
