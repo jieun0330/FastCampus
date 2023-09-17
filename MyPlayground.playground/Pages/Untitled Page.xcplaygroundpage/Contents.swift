@@ -927,10 +927,10 @@ import UIKit
 // 스위프트에서 에러 처리를 어떻게 사용하는지
 
 // 오류 처리를 위한 PhoneError
-enum PhoneError: Error {
-    case unknown
-    case batteryLow(batteryLevel: Int)
-}
+//enum PhoneError: Error {
+//    case unknown
+//    case batteryLow(batteryLevel: Int)
+//}
 
 //throw구문을 이용해서 에러를 발생시킨다
 //throw PhoneError.batteryLow(batteryLevel: 20)
@@ -938,11 +938,11 @@ enum PhoneError: Error {
 //오류를 처리하는 방법
 //1. 함수에서 발생한 오류를 해당 함수에
 // throws -> throwing 함수
-func checkPhoneBatteryStatus(batteryLevel: Int) throws -> String {
-    guard batteryLevel != -1 else { throw PhoneError.unknown }
-    guard batteryLevel >= 20 else { throw PhoneError.batteryLow(batteryLevel: 20)}
-    return "배터리 상태가 정상입니다"
-}
+//func checkPhoneBatteryStatus(batteryLevel: Int) throws -> String {
+//    guard batteryLevel != -1 else { throw PhoneError.unknown }
+//    guard batteryLevel >= 20 else { throw PhoneError.batteryLow(batteryLevel: 20)}
+//    return "배터리 상태가 정상입니다"
+//}
 
 
 //2. do-catch로 오류를 해결
@@ -954,19 +954,110 @@ func checkPhoneBatteryStatus(batteryLevel: Int) throws -> String {
  }
  */
 
-do {
-    try checkPhoneBatteryStatus(batteryLevel: 20)
-} catch PhoneError.unknown {
-    print("알 수 없는 에러입니다")
-} catch  PhoneError.batteryLow(let batteryLevel) {
-    print("배터리 전원 부족 남은 배터리: \(batteryLevel)%")
-} catch {
-    print("그 외 오류 발생: \(error)")
+//do {
+//    try checkPhoneBatteryStatus(batteryLevel: 20)
+//} catch PhoneError.unknown {
+//    print("알 수 없는 에러입니다")
+//} catch  PhoneError.batteryLow(let batteryLevel) {
+//    print("배터리 전원 부족 남은 배터리: \(batteryLevel)%")
+//} catch {
+//    print("그 외 오류 발생: \(error)")
+//}
+//
+//
+//let status = try? checkPhoneBatteryStatus(batteryLevel: -1)
+//print(status)
+//
+//let status2 = try! checkPhoneBatteryStatus(batteryLevel: 30)
+//print(status2)
+
+
+
+
+
+
+
+
+
+
+
+//CH01_25.클로저
+// 참조 타입
+// named closure, unnamed closure
+/*
+ { (매개 변수) -> 리턴 타입 in
+    실행 구문
+ }
+ */
+
+// 익명함수여서 func를 쓰지 않는다
+// parameter와 return 타입이 없으니 ()
+let hello = { () -> () in
+    print("hello")
+}
+
+hello()
+
+let hello2 = { (name: String) -> String in
+    return "Hello, \(name)"
+}
+
+//전달인자 name: 을 쓰면 안됨
+hello2("Gunter")
+
+
+func doSomething(closure: () -> ()) {
+    closure()
+}
+
+doSomething(closure: { () -> () in
+    print("hello")
+})
+
+doSomething {
+    print("hello2")
+}
+
+func doSomething2() -> () -> () {
+    return { () -> () in
+        print("hello4")
+    }
+}
+
+doSomething2()()
+
+func doSomething2(success: () -> (), fail: () -> ()) {
+    
+}
+
+doSomething2 {
+    <#code#>
+} fail: {
+    <#code#>
 }
 
 
-let status = try? checkPhoneBatteryStatus(batteryLevel: -1)
-print(status)
 
-let status2 = try! checkPhoneBatteryStatus(batteryLevel: 30)
-print(status2)
+func doSomething3(closure: (Int, Int, Int) -> Int) {
+    closure(1,2,3)
+}
+
+doSomething3(closure: { (a, b, c) in
+    return a+b+c
+})
+
+doSomething3(closure: {
+    return $0+$1+$2
+})
+
+doSomething3(closure: {
+    $0+$1+$2
+})
+
+doSomething3() {
+    $0+$1+$2
+}
+
+doSomething3 {
+    $0+$1+$2
+}
