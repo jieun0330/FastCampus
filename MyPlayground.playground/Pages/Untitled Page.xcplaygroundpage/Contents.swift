@@ -555,3 +555,76 @@ struct2.count
 struct3.count
 
 //값 타입이라 값을 변경하더라도 다른데에 영향을 주지 않는다
+
+
+
+
+
+//CH01_17.상속
+// 부모가 자식에게 재산을 물려주는 행위
+
+class Vehicle {
+    // final : 재정의 할 수 없음
+//    final var currentSpeed = 0.0
+    var currentSpeed = 0.0
+    var description: String {
+        return "traveling at \(currentSpeed) miles per hour"
+    }
+    func makeNoise() {
+        print("speaker on")
+    }
+}
+
+/*
+ class 클래스 이름: 부모 클래스 이름 {
+    하위 클래스 정의
+ }
+ */
+class Bicycle: Vehicle {
+    var hasBasket = false
+}
+
+var bicycle = Bicycle()
+bicycle.currentSpeed
+bicycle.currentSpeed = 15.0
+bicycle.currentSpeed
+
+
+//overriding
+//자신만의 기능으로 바꿔서 사용함
+
+class Train: Vehicle {
+    override func makeNoise() {
+        super.makeNoise()
+        print("choo choo")
+    }
+}
+
+let train = Train()
+train.makeNoise()
+
+
+class Car: Vehicle {
+    var gear = 1
+    override var description: String {
+        return super.description + " in gear \(gear)"
+    }
+}
+
+let car = Car()
+car.currentSpeed = 30.0
+car.gear = 2
+print(car.description)
+
+
+class AutomaticCar: Car {
+    override var currentSpeed: Double {
+        didSet {
+            gear = Int(currentSpeed / 10) + 1
+        }
+    }
+}
+
+let automatic = AutomaticCar()
+automatic.currentSpeed = 35.0
+print("AutomaticCar: \(automatic.description)")
