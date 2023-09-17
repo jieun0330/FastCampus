@@ -287,14 +287,14 @@ func test() {
 test()
 
 
-
-let value: Int? = 6
-if value == 6 {
-    print("value가 6입니다")
-} else {
-    print("value가 6이 아닙니다")
-}
-
+//
+//let value: Int? = 6
+//if value == 6 {
+//    print("value가 6입니다")
+//} else {
+//    print("value가 6이 아닙니다")
+//}
+//
 
 
 // 묵시적 해제
@@ -684,7 +684,7 @@ for item in library {
 print("Media library contains \(movieCount) movies and \(songCount) songs")
 
 for item in library {
-    // as? downcasting ? 항상 성공할거라고 확신읻 들 때만 사용?
+    // as? downcasting ? 항상 성공할거라고 확신이 들 때만 사용?
     // as? 옵셔널이여서 if let으로 꺼내옴
     if let movie = item as? Movie {
         print("Movie: \(movie.name), dir. \(movie.director)")
@@ -692,3 +692,39 @@ for item in library {
         print("Song: \(song.name), by \(song.artist)")
     }
 }
+
+
+
+
+
+//CH01_19.asset와 guard
+/*
+ asset
+ - 디버깅 모드에서만 동작하고 주로 디버깅 중 조건의 검증을 위하여 사용한다
+ 
+ guard
+ - guard 문에 주어진 조건문이 거짓일 때 구문이 실행 됨
+ */
+//
+//var value = 0
+//assert(value == 0)
+
+// 에러 발생
+//value = 2
+//assert(value == 0, "값이 0이 아닙니다")
+
+
+
+/*
+ guard 조건 else {
+    조건이 false 이면 else 구문이 실행되고
+    return or throw or break 를 통해 이 후 코드를 실행하지 않도록 한다
+ }
+ */
+func guardTest(value: Int?) {
+    guard let value = value else { return }
+    print(value)
+}
+
+guardTest(value: 2)
+guardTest(value: nil)
