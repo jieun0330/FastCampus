@@ -179,3 +179,54 @@ case 26...35:
 default:
     print("이상 기후입니다")
 }
+
+
+
+
+
+
+//CH01_09.반복문
+// for-in, while, repeat-while
+
+/*
+ for 루프상수 in 순회대상 {
+    실행할 구문
+ }
+ */
+
+for i in 1...4 {
+    print(i)
+}
+
+let array = [1,2,3,4,5]
+
+for i in array {
+    print(i)
+}
+
+
+//while
+var number = 5
+
+while number < 10 {
+    number += 1
+}
+
+number
+
+
+//repeat-while
+/*
+ repeat {
+    실행할 구문
+ } while 조건식
+ */
+
+var x = 6
+
+// 조건이 안맞아도 무조건 한번은 실행하게 됨
+repeat {
+    x += 2
+} while x < 5
+
+print(x)
