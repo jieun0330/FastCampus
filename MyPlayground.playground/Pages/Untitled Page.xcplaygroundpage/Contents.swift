@@ -628,3 +628,67 @@ class AutomaticCar: Car {
 let automatic = AutomaticCar()
 automatic.currentSpeed = 35.0
 print("AutomaticCar: \(automatic.description)")
+
+
+
+
+
+//CH01_18.타입 캐스팅
+// 인스턴스의 타입을 확인하거나 어떠한 클래스의 인스턴스를 해당 클래스 계층 구조의 슈퍼 클래스나 서브 클래스로 취급하는 방법
+// 타입캐스팅 연산자: is, as -> 값을 확인하거나 값을 변경함
+
+class MediaItem {
+    var name: String
+    init(name: String) {
+        self.name = name
+    }
+}
+
+class Movie: MediaItem {
+    var director: String
+    init(name: String, director: String) {
+        self.director = director
+        super.init(name: name)
+    }
+}
+
+class Song: MediaItem {
+    var artist: String
+    init(name: String, artist: String) {
+        self.artist = artist
+        super.init(name: name)
+    }
+}
+
+let library = [
+    Movie(name: "기생충", director: "봉준호"),
+    Song(name: "Butter", artist: "BTS"),
+    Movie(name: "올드보이", director: "박찬욱"),
+    Song(name: "Wonderwall", artist: "Oasis"),
+    Song(name: "Rain", artist: "이적")
+]
+
+
+
+var movieCount = 0
+var songCount = 0
+
+for item in library {
+    if item is Movie {
+        movieCount += 1
+    } else if item is Song {
+        songCount += 1
+    }
+}
+
+print("Media library contains \(movieCount) movies and \(songCount) songs")
+
+for item in library {
+    // as? downcasting ? 항상 성공할거라고 확신읻 들 때만 사용?
+    // as? 옵셔널이여서 if let으로 꺼내옴
+    if let movie = item as? Movie {
+        print("Movie: \(movie.name), dir. \(movie.director)")
+    } else if let song = item as? Song {
+        print("Song: \(song.name), by \(song.artist)")
+    }
+}
