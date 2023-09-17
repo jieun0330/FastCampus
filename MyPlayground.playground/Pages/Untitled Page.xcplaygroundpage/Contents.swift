@@ -50,6 +50,11 @@ set
 
 
 
+
+
+
+
+
 //CH01_07.함수 사용법
 func sum(a: Int, b: Int) -> Int {
     return a+b
@@ -108,6 +113,4 @@ sendMessage(me: "Gunter", friends: "Json", "Albert", "Stella")
 
 
 
-
-//CH01_08.조건문
 
