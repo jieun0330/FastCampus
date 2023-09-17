@@ -852,44 +852,66 @@ import UIKit
 //CH01_22.열거형
 // 연관성이 있는 값을 모아 놓은 것을 말한다
 
-enum CompassPoint: String {
-//    case north, south, east, west
-    case north = "북"
-    case south = "남"
-    case east = "동"
-    case west = "서"
+//enum CompassPoint: String {
+////    case north, south, east, west
+//    case north = "북"
+//    case south = "남"
+//    case east = "동"
+//    case west = "서"
+//}
+//
+//var direction = CompassPoint.east
+//direction = .west
+//
+//switch direction {
+//case .north:
+//    print(direction.rawValue)
+//case .south:
+//    print(direction.rawValue)
+//case .east:
+//    print(direction.rawValue)
+//case .west:
+//    print(direction.rawValue)
+//}
+//
+//
+//let direction2 = CompassPoint(rawValue: "남")
+//
+//
+//
+//enum PhoneError {
+//    case unknown
+//    case batteryLow(String)
+//}
+//
+//let error = PhoneError.batteryLow("배터리가 곧 방전됩니다")
+//
+//
+//switch error {
+//case .batteryLow(let message):
+//    print(message)
+//case .unknown:
+//    print("알 수 없는 에러입니다.")
+//}
+//
+
+
+
+
+//CH01_23.옵셔널 체이닝
+// 옵셔널에 속해 있는 nil일지도 모르는 프로퍼티, 메서드, 서브스크립션 등을 가져오가 호출할 때 사용할 수 있는 일련의 과정
+
+struct Developer {
+    let name: String
 }
 
-var direction = CompassPoint.east
-direction = .west
-
-switch direction {
-case .north:
-    print(direction.rawValue)
-case .south:
-    print(direction.rawValue)
-case .east:
-    print(direction.rawValue)
-case .west:
-    print(direction.rawValue)
+struct Company {
+    let name: String
+    var developer: Developer?
 }
 
-
-let direction2 = CompassPoint(rawValue: "남")
-
-
-
-enum PhoneError {
-    case unknown
-    case batteryLow(String)
-}
-
-let error = PhoneError.batteryLow("배터리가 곧 방전됩니다")
-
-
-switch error {
-case .batteryLow(let message):
-    print(message)
-case .unknown:
-    print("알 수 없는 에러입니다.")
-}
+var developer = Developer(name: "han")
+var company = Company(name: "Gunter", developer: developer)
+print(company.developer)
+print(company.developer?.name)
+print(company.developer!.name)
