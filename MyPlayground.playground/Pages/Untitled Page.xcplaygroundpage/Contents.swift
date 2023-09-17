@@ -230,3 +230,26 @@ repeat {
 } while x < 5
 
 print(x)
+
+
+
+
+
+//CH01_10.옵셔널
+// 값이 있을 수도 있고 없을 수도 있다.
+// var name: String = "" -> 값이 없는게 아니라 빈 문자열의 값을 가지고 있다
+// var name: String? = nil -> nil이 값이 없는 거임
+
+// var number: Int = 0 -> 값이 없는게 아니라 0이라는 숫자 값이 있는 거임
+// var number: Int? = nil
+
+var name: String?
+
+//옵셔널 타입에도 일반 값을 넣을 수 있음
+var optionalName: String? = "Gunter"
+print(optionalName)
+// optional 포장지로 싸여져있음
+// 포장지를 벗겨 값을 가져오는게 optional binding 임
+
+// 옵셔널 변수를 넣을 수 없음
+//var requiredName: String = optionalName
